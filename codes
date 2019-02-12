@@ -28,12 +28,11 @@ async def status_task():
         await asyncio.sleep(3)
         await client.change_presence(game=discord.Game(name='in ' + str(len(client.servers))+' servers'))
         await asyncio.sleep(3)
-        await client.change_presence(game=discord.Game(name="MUSIC", type=2))
+        await client.change_presence(game=discord.Game(name="Marshmello Songs", type=2))
         await asyncio.sleep(3)
         await client.change_presence(game=discord.Game(name="Mello Gang", type=3))
         await asyncio.sleep(3)
-        await client.change_presence(game=discord.Game(name="For Mellos[✖‿✖]"))
-        await asyncio.sleep(3)
+        await client.change_presence(game=discord.Game(name="for -help", type=3))
 @client.event
 async def on_ready():
     ...
@@ -55,8 +54,8 @@ async def help(ctx):
     if ctx.message.author.bot:
       return
     else:
-    channel = ctx.message.channel
-    await client.say("```Help Commands\n -ping (returns pong)\n -ask (ask questions that has answer as Yes & No.)\n -facts (Some Facts about Marshmello.)```")
+        await client.send_typing(ctx.message.channel)
+        await client.send_message(ctx.message.channel, "```Help Commands\n -ping (returns pong)\n -ask (ask questions that has answer as Yes & No.)\n -facts (Some Facts about Marshmello.)```")
 @client.command(pass_context = True)
 async def ask(ctx):
     choices = ['Yes!', 'No!']
@@ -104,6 +103,6 @@ async def on_member_remove(member):
             embed = discord.Embed(title=f'{member.name} just left {member.server.name}', description='We Will Remember You.', color = discord.Color((r << 16) + (g << 8) + b))
             embed.add_field(name='__User left__', value='**We hope you will join again :( .**', inline=True)
             embed.set_thumbnail(url=member.avatar_url)
-            await client.send_message(channel, embed=embed) 
+            await client.send_message(channel, embed=embed)  
             
 client.run(os.getenv('marshmello'))
