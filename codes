@@ -37,7 +37,6 @@ async def status_task():
 async def on_ready():
     ...
     client.loop.create_task(status_task())   
-    print('BOT_IS_ONLINE')
 
 @client.command(pass_context = True)
 async def ping(ctx):
